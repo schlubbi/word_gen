@@ -1,9 +1,9 @@
 class WordGen::Generator
 
-  attr_reader :word_length, :character_set
+  attr_reader :word_length, :character_set, :writer
 
-  def initialize word_length, character_set
-    @word_length, @character_set = Integer(word_length), character_set.map(&:to_s)
+  def initialize word_length, character_set, writer = $stdout
+    @word_length, @character_set, @writer = Integer(word_length), character_set.map(&:to_s), writer
   end
 
   def start
@@ -19,7 +19,7 @@ class WordGen::Generator
 
   def printAllKLengthRec char_set, prefix, n, k
     if k == 0
-      puts prefix
+      writer.puts prefix
       return
     end
 

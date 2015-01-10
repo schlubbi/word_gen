@@ -12,12 +12,18 @@ end
 options = {}
 
 OptionParser.new do |opts|
-  opts.on('-w', '--world-length WORD_LENGTH', "The length of the word") do |f|
+  opts.on('-w', '--world-length WORD_LENGTH', 'The length of the word') do |f|
     options[:word_length] = f
   end
 
-  opts.on('-s', '--character-set CHARACTER_SET', "The charachter set") do |f|
+
+  modes = WordGen::Modes.constants.map(&:to_s)
+  opts.on('-s', '--set SET', modes, 'Available charachter sets', " (#{modes.join(",")})") do |f|
     options[:character_set] = f
+  end
+
+  opts.on('-o', '--output-file OUTPUT_FILE', 'Output file name') do |f|
+    options[:output_file] = f
   end
 
   opts.on('-h', '--help', "Prints this help") do
@@ -33,11 +39,11 @@ OptionParser.new do |opts|
     end
     exit
   end
-
 end.parse!
 
 word_length = options[:word_length]
 character_set = options[:character_set]
+output_file = options[:output_file]
 
 unless character_set
   puts "Choose a character set with -s"
@@ -50,9 +56,14 @@ unless word_length
   exit 1
 end
 
-
 if WordGen::Modes.constants.include?(character_set.to_sym)
-  WordGen::Generator.new(word_length, WordGen::Modes.class_eval(character_set)).start
+  if output_file
+    File.open(output_file, "w+") do |file|
+      WordGen::Generator.new(word_length, WordGen::Modes.class_eval(character_set), file).start
+    end
+  else
+    WordGen::Generator.new(word_length, WordGen::Modes.class_eval(character_set)).start
+  end
 else
   puts "Please choose a valid character set"
 end
