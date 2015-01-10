@@ -7,15 +7,10 @@ class WordGen::Generator
   end
 
   def start
-    printAllKLength character_set, word_length
+    printAllKLengthRec character_set, "", character_set.size, word_length
   end
 
   private
-
-  def printAllKLength char_set, k
-    n = char_set.size
-    printAllKLengthRec char_set, "", n, k
-  end
 
   def printAllKLengthRec char_set, prefix, n, k
     if k == 0
