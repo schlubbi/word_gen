@@ -1,6 +1,6 @@
 # WordGen
 
-A simple word generator written in Ruby. It generates all possible combinations
+A simple word list generator written in Ruby. It generates all possible combinations
 of characters in the given length. It comes with different character sets to choose from.
 You can use `word_gen -l` to get a list of all available sets.
 
