@@ -47,7 +47,7 @@ It can be used with other software like aircrack-ng:
 
 Or as a standalone command line tool:
 ```
-word_gen -w 3 -s NUMERIC
+word_gen -w 2 -s NUMERIC
 11
 12
 13
