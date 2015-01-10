@@ -4,6 +4,9 @@ class WordGen::Generator
 
   def initialize word_length, character_set, writer = $stdout
     @word_length, @character_set, @writer = Integer(word_length), character_set.map(&:to_s), writer
+    if word_length < 1
+      fail ArgumentError, 'word_length need to be positibe'
+    end
   end
 
   def start
