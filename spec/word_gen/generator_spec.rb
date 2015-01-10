@@ -10,7 +10,7 @@ describe WordGen::Generator do
   end
 
   it 'can write to a file' do
-    file_name = 'test'
+    file_name = 'test_file'
     File.open file_name, 'w+' do |file|
       build_generator(1, WordGen::Modes::NUMERIC, file).start
     end
