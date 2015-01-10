@@ -39,6 +39,13 @@ Usage: word_gen [options]
 
 ## Examples
 
+It can be used with other software like aircrack-ng:
+
+```
+  word_gen -w 4 -s NUMERIC | aircrack-ng -w - some_file.cap
+```
+
+Or as a standalone command line tool:
 ```
 word_gen -w 3 -s NUMERIC
 11
@@ -145,7 +152,7 @@ word_gen -w 3 -s NUMERIC
 
 ## Specs
 
-TODO: write specs
+TODO: write more specs
 
 
 ## Contributing
