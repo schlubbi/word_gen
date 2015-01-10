@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = WordGen::VERSION
   spec.authors       = ["Stefan Schmidt"]
   spec.email         = ["schlubbi@me.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Generate WordLists}
+  spec.description   = %q{Generate WordLists and display them on STDOUT or save them to a file.}
+  spec.homepage      = "http://schlubbi.io"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

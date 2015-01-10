@@ -1,0 +1,58 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+
+begin
+  require 'word_gen'
+rescue LoadError
+  require 'rubygems'
+  require 'word_gen'
+end
+
+options = {}
+
+OptionParser.new do |opts|
+  opts.on('-w', '--world-length WORD_LENGTH', "The length of the word") do |f|
+    options[:word_length] = f
+  end
+
+  opts.on('-s', '--character-set CHARACTER_SET', "The charachter set") do |f|
+    options[:character_set] = f
+  end
+
+  opts.on('-h', '--help', "Prints this help") do
+    puts opts
+    exit
+  end
+
+  opts.on('-l', '--list-sets', 'Lists available character sets') do
+    puts "Character sets:"
+    WordGen::Modes.constants.each do |m|
+      set = WordGen::Modes.class_eval m.to_s
+      puts "#{m} #{'SIZE:'.rjust(30- m.size)} #{set.size} \n#{set}"
+    end
+    exit
+  end
+
+end.parse!
+
+word_length = options[:word_length]
+character_set = options[:character_set]
+
+unless character_set
+  puts "Choose a character set with -s"
+  puts "Get a list of all available character sets with -l"
+  exit 1
+end
+
+unless word_length
+  puts "Provide a word_length with -w"
+  exit 1
+end
+
+
+if WordGen::Modes.constants.include?(character_set.to_sym)
+  WordGen::Generator.new(word_length, WordGen::Modes.class_eval(character_set)).start
+else
+  puts "Please choose a valid character set"
+end

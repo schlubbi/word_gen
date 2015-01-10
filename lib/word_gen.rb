@@ -1,5 +1,3 @@
 require "word_gen/version"
-
-module WordGen
-  # Your code goes here...
-end
+require "word_gen/generator"
+require "word_gen/modes"
