@@ -44,8 +44,13 @@ OptionParser.new do |opts|
     exit
   end
 
-  opts.on_tail('-h', '--help', '--usage', "Prints this help") do
+  opts.on_tail('-h', '--help', '--usage', 'Prints this help') do
     puts opts
+    exit
+  end
+
+  opts.on_tail('-v', '--version', 'Prints the version') do
+    puts "word_gen version #{WordGen::VERSION}"
     exit
   end
 end.parse!
@@ -55,13 +60,13 @@ character_set = options[:character_set]
 output_file = options[:output_file]
 
 unless character_set && WordGen::Modes.constants.include?(character_set.to_sym)
-  puts "Choose a character set with -s"
-  puts "Get a list of all available character sets with -l"
+  puts 'Choose a character set with -s'
+  puts 'Get a list of all available character sets with -l'
   exit 1
 end
 
 unless word_length
-  puts "Provide a word_length with -w"
+  puts 'Provide a word_length with -w'
   exit 1
 end
 
