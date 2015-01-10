@@ -12,7 +12,7 @@ end
 options = {}
 
 OptionParser.new do |opts|
-  opts.on('-w', '--world-length WORD_LENGTH', 'The length of the word') do |f|
+  opts.on('-w', '--word-length WORD_LENGTH', 'The length of the word') do |f|
     options[:word_length] = f
   end
 
