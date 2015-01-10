@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "word_gen"
   spec.version       = WordGen::VERSION
   spec.authors       = ["Stefan Schmidt"]
-  spec.email         = ["schlubbi@me.com"]
-  spec.summary       = %q{Generate WordLists}
-  spec.description   = %q{Generate WordLists and display them on STDOUT or save them to a file.}
-  spec.homepage      = "http://schlubbi.io"
+  spec.email         = ["mail@schlubbi.io"]
+  spec.summary       = %q{Generate word lists}
+  spec.description   = %q{Generate word lists and display them on STDOUT or save them to a file.}
+  spec.homepage      = "https://github.com/schlubbi/word_gen"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

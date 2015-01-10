@@ -44,6 +44,10 @@ OptionParser.new do |opts|
     exit
   end
 
+  opts.on('-r', '--[no-]random', 'Shuffle the character set before execution') do |t|
+    options[:shuffle] = t
+  end
+
   opts.on_tail('-h', '--help', '--usage', 'Prints this help') do
     puts opts
     exit
@@ -58,6 +62,7 @@ end.parse!
 word_length = options[:word_length]
 character_set = options[:character_set]
 output_file = options[:output_file]
+shuffle = options.fetch(:shuffle, false)
 
 unless character_set && WordGen::Modes.constants.include?(character_set.to_sym)
   puts 'Choose a character set with -s'
@@ -70,10 +75,13 @@ unless word_length
   exit 1
 end
 
+mode = WordGen::Modes.class_eval character_set
+mode = mode.shuffle if shuffle
+
 if output_file
   File.open(output_file, "w+") do |file|
-    WordGen::Generator.new(word_length, WordGen::Modes.class_eval(character_set), file).start
+    WordGen::Generator.new(word_length, mode, file).start
   end
 else
-  WordGen::Generator.new(word_length, WordGen::Modes.class_eval(character_set)).start
+  WordGen::Generator.new(word_length, mode).start
 end
