@@ -9,6 +9,11 @@ rescue LoadError
   require 'word_gen'
 end
 
+trap("INT") do
+  puts "quitting word_gen"
+  exit
+end
+
 options = {}
 
 OptionParser.new do |opts|
